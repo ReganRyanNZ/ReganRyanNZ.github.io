@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Posts on My New Hugo Site</title>
+    <link>http://replace-this-with-your-hugo-site.com/post/</link>
+    <description>Recent content in Posts on My New Hugo Site</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 05 Aug 2016 16:54:11 +1200</lastBuildDate>
+    <atom:link href="http://replace-this-with-your-hugo-site.com/post/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>use underscore to speed up console testing</title>
+      <link>http://replace-this-with-your-hugo-site.com/post/use-underscore-to-speed-up-console-testing/</link>
+      <pubDate>Fri, 05 Aug 2016 16:54:11 +1200</pubDate>
+      
+      <guid>http://replace-this-with-your-hugo-site.com/post/use-underscore-to-speed-up-console-testing/</guid>
+      <description>&lt;p&gt;TL;DR use &lt;code&gt;_&lt;/code&gt; to reference the last output in the console, but make sure you store it somewhere!&lt;/p&gt;
+
+&lt;p&gt;The Rails Console &lt;code&gt;rails c&lt;/code&gt; is a great tool for quick testing—making sure you get the right syntax in a chain of commands.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-ruby&#34;&gt;$ rails c
+# How many users have subscribed to email updates?
+&amp;gt; @supporters.select {|s| s.donation_preferences.email_updates }
+{&amp;lt;lots of output&amp;gt;}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;I often do something like the above, only to realise I didn&amp;rsquo;t save that result. If I want to mess around with the data, I&amp;rsquo;d need to type it out again:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-ruby&#34;&gt;# How many users have subscribed to email updates?
+&amp;gt; supporters = @supporters.select {|s| s.donation_preferences.email_updates }
+{&amp;lt;lots of output&amp;gt;}
+&amp;gt; supporters.size
+557
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;So here&amp;rsquo;s the neat little trick: use &lt;code&gt;_&lt;/code&gt; to get the &lt;em&gt;last returned data&lt;/em&gt; from the console.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-ruby&#34;&gt;# How many users have subscribed to email updates?
+&amp;gt; @supporters.select {|s| s.donation_preferences.email_updates }
+{&amp;lt;lots of output&amp;gt;}
+&amp;gt; _.size
+557
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;In the above example, you can see that if you forgot to set your data to a variable, you can easily access it by the &lt;code&gt;_&lt;/code&gt; shortcut. However there is one problem:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-ruby&#34;&gt;# How many users have subscribed to email updates?
+&amp;gt; @supporters.select {|s| s.donation_preferences.email_updates }
+{&amp;lt;lots of output&amp;gt;}
+&amp;gt; _.size
+557
+&amp;gt; _.size
+8
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;What happened here? &lt;code&gt;_&lt;/code&gt; is very unstable—it will always return the &lt;em&gt;last returned value&lt;/em&gt;. In other words, the first &lt;code&gt;_.size&lt;/code&gt; was the number of &lt;code&gt;@supporters&lt;/code&gt;. The second &lt;code&gt;_.size&lt;/code&gt; actually returned &lt;code&gt;557.size&lt;/code&gt; which is &lt;code&gt;8&lt;/code&gt; (bytes).&lt;/p&gt;
+
+&lt;p&gt;So, the best practice I have found is to use &lt;code&gt;_&lt;/code&gt; when you need to get the data, but immediately saved it to a more reliable variable.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-ruby&#34;&gt;# How many users have subscribed to email updates?
+&amp;gt; @supporters.select {|s| s.donation_preferences.email_updates }
+{&amp;lt;lots of output&amp;gt;}
+&amp;gt; supporters = _
+{&amp;lt;lots of output&amp;gt;}
+&amp;gt; supporters.size
+557
+&lt;/code&gt;&lt;/pre&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

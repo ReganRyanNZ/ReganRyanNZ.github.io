@@ -1,0 +1,66 @@
++++
+Categories = ["Development", "Ruby"]
+Description = ""
+Tags = ["Development", "Ruby"]
+date = "2016-08-05T16:54:11+12:00"
+menu = "main"
+title = "use underscore to speed up console testing"
+
++++
+
+TL;DR use `_` to reference the last output in the console, but make sure you store it somewhere!
+
+The Rails Console `rails c` is a great tool for quick testing—making sure you get the right syntax in a chain of commands.
+
+```ruby
+$ rails c
+# How many users have subscribed to email updates?
+> @supporters.select {|s| s.donation_preferences.email_updates }
+{<lots of output>}
+```
+
+I often do something like the above, only to realise I didn't save that result. If I want to mess around with the data, I'd need to type it out again:
+
+```ruby
+# How many users have subscribed to email updates?
+> supporters = @supporters.select {|s| s.donation_preferences.email_updates }
+{<lots of output>}
+> supporters.size
+557
+```
+
+So here's the neat little trick: use `_` to get the _last returned data_ from the console.
+
+```ruby
+# How many users have subscribed to email updates?
+> @supporters.select {|s| s.donation_preferences.email_updates }
+{<lots of output>}
+> _.size
+557
+```
+
+In the above example, you can see that if you forgot to set your data to a variable, you can easily access it by the `_` shortcut. However there is one problem:
+
+```ruby
+# How many users have subscribed to email updates?
+> @supporters.select {|s| s.donation_preferences.email_updates }
+{<lots of output>}
+> _.size
+557
+> _.size
+8
+```
+
+What happened here? `_` is very unstable—it will always return the _last returned value_. In other words, the first `_.size` was the number of `@supporters`. The second `_.size` actually returned `557.size` which is `8` (bytes).
+
+So, the best practice I have found is to use `_` when you need to get the data, but immediately saved it to a more reliable variable.
+
+```ruby
+# How many users have subscribed to email updates?
+> @supporters.select {|s| s.donation_preferences.email_updates }
+{<lots of output>}
+> supporters = _
+{<lots of output>}
+> supporters.size
+557
+```
