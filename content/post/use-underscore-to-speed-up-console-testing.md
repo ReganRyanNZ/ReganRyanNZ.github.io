@@ -4,7 +4,7 @@ Description = ""
 Tags = ["ruby", "console"]
 date = "2016-08-05T16:54:11+12:00"
 menu = "main"
-title = "use underscore to speed up console testing"
+title = "Use Underscore To Speed Up Console Testing"
 
 +++
 
