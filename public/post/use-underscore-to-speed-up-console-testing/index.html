@@ -1,0 +1,111 @@
+	<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta name="generator" content="Hugo 0.16" />
+
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title> use underscore to speed up console testing &middot; My New Hugo Site </title>
+
+  
+  <link rel="stylesheet" href="http://replace-this-with-your-hugo-site.com/css/poole.css">
+  <link rel="stylesheet" href="http://replace-this-with-your-hugo-site.com/css/syntax.css">
+  <link rel="stylesheet" href="http://replace-this-with-your-hugo-site.com/css/hyde.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
+
+  
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/apple-touch-icon-144-precomposed.png">
+  <link rel="shortcut icon" href="/favicon.png">
+
+  
+  <link href="" rel="alternate" type="application/rss+xml" title="My New Hugo Site" />
+</head>
+
+	<body class="theme-base-09">
+		<div class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      <a href="http://replace-this-with-your-hugo-site.com/"><h1>My New Hugo Site</h1></a>
+      <p class="lead">
+      An elegant open source and mobile first theme for <a href="http://hugo.spf13.com">hugo</a> made by <a href="http://twitter.com/mdo">@mdo</a>. Originally made for Jekyll.
+      </p>
+    </div>
+
+    <ul class="sidebar-nav">
+      <li><a href="/">Home</a> </li>
+      
+        <li><a href="/post/use-underscore-to-speed-up-console-testing/"> use underscore to speed up console testing </a></li>
+      
+    </ul>
+
+    <p>&copy; 2016. All rights reserved. </p>
+  </div>
+</div>
+
+
+		<div class="content container">
+			<div class="post">
+			 	<h1>use underscore to speed up console testing</h1>
+			  <span class="post-date">Fri, Aug 5, 2016</span>
+			      <p><strong>TL;DR</strong> use <code>_</code> to reference the last output in the console, but make sure you store it somewhere!</p>
+
+<p>The Rails Console <code>rails c</code> is a great tool for quick testing—checking if you get the right syntax in a chain of commands.</p>
+
+<pre><code class="language-ruby">$ rails c
+# How many users have subscribed to email updates?
+&gt; @supporters.select {|s| s.donation_preferences.email_updates }
+{&lt;lots of output&gt;}
+</code></pre>
+
+<p>I often do something like the above, only to realise I didn&rsquo;t save that result. If I want to mess around with the data, I&rsquo;d need to type it out again:</p>
+
+<pre><code class="language-ruby"># How many users have subscribed to email updates?
+&gt; supporters = @supporters.select {|s| s.donation_preferences.email_updates }
+{&lt;lots of output&gt;}
+&gt; supporters.size
+557
+</code></pre>
+
+<p>So here&rsquo;s the neat little trick: use <code>_</code> to get the <em>last returned data</em> from the console.</p>
+
+<pre><code class="language-ruby"># How many users have subscribed to email updates?
+&gt; @supporters.select {|s| s.donation_preferences.email_updates }
+{&lt;lots of output&gt;}
+&gt; _.size
+557
+</code></pre>
+
+<p>In the above example, you can see that if you forgot to set your data to a variable, you can easily access it by the <code>_</code> shortcut. However there is one problem:</p>
+
+<pre><code class="language-ruby"># How many users have subscribed to email updates?
+&gt; @supporters.select {|s| s.donation_preferences.email_updates }
+{&lt;lots of output&gt;}
+&gt; _.size
+557
+&gt; _.size
+8
+</code></pre>
+
+<p>What happened here? <code>_</code> is very unstable—it will always return the <em>last returned value</em>. In other words, the first <code>_.size</code> was the number of <code>@supporters</code>. The second <code>_.size</code> actually returned <code>557.size</code> which is <code>8</code> (bytes).</p>
+
+<p>So, the best practice I have found is to use <code>_</code> when you need to get the data, but immediately saved it to a more reliable variable.</p>
+
+<pre><code class="language-ruby"># How many users have subscribed to email updates?
+&gt; @supporters.select {|s| s.donation_preferences.email_updates }
+{&lt;lots of output&gt;}
+&gt; supporters = _
+{&lt;lots of output&gt;}
+&gt; supporters.size
+557
+</code></pre>
+
+			</div>
+
+			
+		</div>
+
+  </body>
+</html>
