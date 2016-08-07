@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  
+  <url>
+    <loc>http://replace-this-with-your-hugo-site.com/</loc>
+    <lastmod>2016-08-05T16:54:11+12:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://replace-this-with-your-hugo-site.com/post/use-underscore-to-speed-up-console-testing/</loc>
+    <lastmod>2016-08-05T16:54:11+12:00</lastmod>
+  </url>
+  
+</urlset>
