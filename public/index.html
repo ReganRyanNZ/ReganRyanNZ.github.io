@@ -63,54 +63,49 @@
     <p><strong>TL;DR</strong> use <code>_</code> to reference the last output in the console, but make sure you store it somewhere!</p>
 
 <p>The Rails Console <code>rails c</code> is a great tool for quick testing—checking if you get the right syntax in a chain of commands.</p>
-
-<pre><code class="language-ruby">$ rails c
-# How many users have subscribed to email updates?
-&gt; @supporters.select {|s| s.donation_preferences.email_updates }
-{&lt;lots of output&gt;}
-</code></pre>
+<div class="highlight" style="background: #272822"><pre style="line-height: 125%"><span></span><span style="color: #960050; background-color: #1e0010">$</span> <span style="color: #f8f8f2">rails</span> <span style="color: #f8f8f2">c</span>
+<span style="color: #75715e"># How many users have subscribed to email updates?</span>
+<span style="color: #f92672">&gt;</span> <span style="color: #f8f8f2">@supporters</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">select</span> <span style="color: #f8f8f2">{</span><span style="color: #f92672">|</span><span style="color: #f8f8f2">s</span><span style="color: #f92672">|</span> <span style="color: #f8f8f2">s</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">donation_preferences</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">email_updates</span> <span style="color: #f8f8f2">}</span>
+<span style="color: #f8f8f2">{</span><span style="color: #f92672">&lt;</span><span style="color: #f8f8f2">lots</span> <span style="color: #f8f8f2">of</span> <span style="color: #f8f8f2">output</span><span style="color: #f92672">&gt;</span><span style="color: #f8f8f2">}</span>
+</pre></div>
 
 <p>I often do something like the above, only to realise I didn&rsquo;t save that result. If I want to mess around with the data, I&rsquo;d need to type it out again:</p>
-
-<pre><code class="language-ruby"># How many users have subscribed to email updates?
-&gt; supporters = @supporters.select {|s| s.donation_preferences.email_updates }
-{&lt;lots of output&gt;}
-&gt; supporters.size
-557
-</code></pre>
+<div class="highlight" style="background: #272822"><pre style="line-height: 125%"><span></span><span style="color: #75715e"># How many users have subscribed to email updates?</span>
+<span style="color: #f92672">&gt;</span> <span style="color: #f8f8f2">supporters</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">@supporters</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">select</span> <span style="color: #f8f8f2">{</span><span style="color: #f92672">|</span><span style="color: #f8f8f2">s</span><span style="color: #f92672">|</span> <span style="color: #f8f8f2">s</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">donation_preferences</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">email_updates</span> <span style="color: #f8f8f2">}</span>
+<span style="color: #f8f8f2">{</span><span style="color: #f92672">&lt;</span><span style="color: #f8f8f2">lots</span> <span style="color: #f8f8f2">of</span> <span style="color: #f8f8f2">output</span><span style="color: #f92672">&gt;</span><span style="color: #f8f8f2">}</span>
+<span style="color: #f92672">&gt;</span> <span style="color: #f8f8f2">supporters</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">size</span>
+<span style="color: #ae81ff">557</span>
+</pre></div>
 
 <p>So here&rsquo;s the neat little trick: use <code>_</code> to get the <em>last returned data</em> from the console.</p>
-
-<pre><code class="language-ruby"># How many users have subscribed to email updates?
-&gt; @supporters.select {|s| s.donation_preferences.email_updates }
-{&lt;lots of output&gt;}
-&gt; _.size
-557
-</code></pre>
+<div class="highlight" style="background: #272822"><pre style="line-height: 125%"><span></span><span style="color: #75715e"># How many users have subscribed to email updates?</span>
+<span style="color: #f92672">&gt;</span> <span style="color: #f8f8f2">@supporters</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">select</span> <span style="color: #f8f8f2">{</span><span style="color: #f92672">|</span><span style="color: #f8f8f2">s</span><span style="color: #f92672">|</span> <span style="color: #f8f8f2">s</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">donation_preferences</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">email_updates</span> <span style="color: #f8f8f2">}</span>
+<span style="color: #f8f8f2">{</span><span style="color: #f92672">&lt;</span><span style="color: #f8f8f2">lots</span> <span style="color: #f8f8f2">of</span> <span style="color: #f8f8f2">output</span><span style="color: #f92672">&gt;</span><span style="color: #f8f8f2">}</span>
+<span style="color: #f92672">&gt;</span> <span style="color: #f8f8f2">_</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">size</span>
+<span style="color: #ae81ff">557</span>
+</pre></div>
 
 <p>In the above example, you can see that if you forgot to set your data to a variable, you can easily access it by the <code>_</code> shortcut. However there is one problem:</p>
-
-<pre><code class="language-ruby"># How many users have subscribed to email updates?
-&gt; @supporters.select {|s| s.donation_preferences.email_updates }
-{&lt;lots of output&gt;}
-&gt; _.size
-557
-&gt; _.size
-8
-</code></pre>
+<div class="highlight" style="background: #272822"><pre style="line-height: 125%"><span></span><span style="color: #75715e"># How many users have subscribed to email updates?</span>
+<span style="color: #f92672">&gt;</span> <span style="color: #f8f8f2">@supporters</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">select</span> <span style="color: #f8f8f2">{</span><span style="color: #f92672">|</span><span style="color: #f8f8f2">s</span><span style="color: #f92672">|</span> <span style="color: #f8f8f2">s</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">donation_preferences</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">email_updates</span> <span style="color: #f8f8f2">}</span>
+<span style="color: #f8f8f2">{</span><span style="color: #f92672">&lt;</span><span style="color: #f8f8f2">lots</span> <span style="color: #f8f8f2">of</span> <span style="color: #f8f8f2">output</span><span style="color: #f92672">&gt;</span><span style="color: #f8f8f2">}</span>
+<span style="color: #f92672">&gt;</span> <span style="color: #f8f8f2">_</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">size</span>
+<span style="color: #ae81ff">557</span>
+<span style="color: #f92672">&gt;</span> <span style="color: #f8f8f2">_</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">size</span>
+<span style="color: #ae81ff">8</span>
+</pre></div>
 
 <p>What happened here? <code>_</code> is very unstable—it will always return the <em>last returned value</em>. In other words, the first <code>_.size</code> was the number of <code>@supporters</code>. The second <code>_.size</code> actually returned <code>557.size</code> which is <code>8</code> (bytes).</p>
 
 <p>So, the best practice I have found is to use <code>_</code> when you need to get the data, but immediately saved it to a more reliable variable.</p>
-
-<pre><code class="language-ruby"># How many users have subscribed to email updates?
-&gt; @supporters.select {|s| s.donation_preferences.email_updates }
-{&lt;lots of output&gt;}
-&gt; supporters = _
-{&lt;lots of output&gt;}
-&gt; supporters.size
-557
-</code></pre>
+<div class="highlight" style="background: #272822"><pre style="line-height: 125%"><span></span><span style="color: #75715e"># How many users have subscribed to email updates?</span>
+<span style="color: #f92672">&gt;</span> <span style="color: #f8f8f2">@supporters</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">select</span> <span style="color: #f8f8f2">{</span><span style="color: #f92672">|</span><span style="color: #f8f8f2">s</span><span style="color: #f92672">|</span> <span style="color: #f8f8f2">s</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">donation_preferences</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">email_updates</span> <span style="color: #f8f8f2">}</span>
+<span style="color: #f8f8f2">{</span><span style="color: #f92672">&lt;</span><span style="color: #f8f8f2">lots</span> <span style="color: #f8f8f2">of</span> <span style="color: #f8f8f2">output</span><span style="color: #f92672">&gt;</span><span style="color: #f8f8f2">}</span>
+<span style="color: #f92672">&gt;</span> <span style="color: #f8f8f2">supporters</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">_</span>
+<span style="color: #f8f8f2">{</span><span style="color: #f92672">&lt;</span><span style="color: #f8f8f2">lots</span> <span style="color: #f8f8f2">of</span> <span style="color: #f8f8f2">output</span><span style="color: #f92672">&gt;</span><span style="color: #f8f8f2">}</span>
+<span style="color: #f92672">&gt;</span> <span style="color: #f8f8f2">supporters</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">size</span>
+<span style="color: #ae81ff">557</span>
+</pre></div>
 
   </div>
   

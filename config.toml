@@ -2,5 +2,6 @@ baseurl = "https://reganryannz.github.io/"
 languageCode = "en-us"
 title = "My New Hugo Site"
 theme = "hyde"
+PygmentsCodeFences = true
 [params]
   themeColor = "theme-base-09"

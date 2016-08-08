@@ -12,7 +12,7 @@ title = "Use Underscore To Speed Up Console Testing"
 
 The Rails Console `rails c` is a great tool for quick testing—checking if you get the right syntax in a chain of commands.
 
-```ruby
+```rb
 $ rails c
 # How many users have subscribed to email updates?
 > @supporters.select {|s| s.donation_preferences.email_updates }
