@@ -1,7 +1,8 @@
 baseurl = "https://reganryannz.github.io/"
 languageCode = "en-us"
-title = "My New Hugo Site"
+title = "Code like a Walrus"
 theme = "hyde"
 PygmentsCodeFences = true
 [params]
-  themeColor = "theme-base-09"
+  themeColor = "theme-base-08"
+  description = "If you finish a project and think \"If I did that again, I'd do it differently\"—that means you learned something."

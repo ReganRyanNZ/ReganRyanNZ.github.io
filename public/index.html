@@ -8,12 +8,13 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
 
-  <title> My New Hugo Site &middot; My New Hugo Site </title>
+  <title> Code like a Walrus &middot; Code like a Walrus </title>
 
   
   <link rel="stylesheet" href="https://reganryannz.github.io/css/poole.css">
   <link rel="stylesheet" href="https://reganryannz.github.io/css/syntax.css">
   <link rel="stylesheet" href="https://reganryannz.github.io/css/hyde.css">
+  <link rel="stylesheet" href="https://reganryannz.github.io/css/override.css">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
 
   
@@ -21,28 +22,30 @@
   <link rel="shortcut icon" href="/favicon.png">
 
   
-  <link href="https://reganryannz.github.io/index.xml" rel="alternate" type="application/rss+xml" title="My New Hugo Site" />
+  <link href="https://reganryannz.github.io/index.xml" rel="alternate" type="application/rss+xml" title="Code like a Walrus" />
 </head>
 
-<body class="theme-base-09 ">
+<body class="theme-base-08 ">
 
 <div class="sidebar">
   <div class="container sidebar-sticky">
     <div class="sidebar-about">
-      <a href="https://reganryannz.github.io/"><h1>My New Hugo Site</h1></a>
+      <a href="https://reganryannz.github.io/"><h1>Code like a Walrus</h1></a>
       <p class="lead">
-      An elegant open source and mobile first theme for <a href="http://hugo.spf13.com">hugo</a> made by <a href="http://twitter.com/mdo">@mdo</a>. Originally made for Jekyll.
+       If you finish a project and think &#34;If I did that again, I&#39;d do it differently&#34;—that means you learned something. 
       </p>
     </div>
 
     <ul class="sidebar-nav">
       <li><a href="/">Home</a> </li>
       
+        <li><a href="/post/test-interfaces-only/"> Test Interfaces Only </a></li>
+      
         <li><a href="/post/use-underscore-to-speed-up-console-testing/"> Use Underscore To Speed Up Console Testing </a></li>
       
     </ul>
 
-    <p>&copy; 2016. All rights reserved. </p>
+    <p>&copy; Regan Ryan 2016. All rights reserved. </p>
   </div>
 </div>
 
@@ -53,6 +56,48 @@
       
   <div class="post">
     <h1 class="post-title">
+      <a href="https://reganryannz.github.io/post/test-interfaces-only/">
+        Test Interfaces Only
+      </a>
+    </h1>
+
+    <span class="post-date">Mon, Aug 8, 2016</span>
+
+    <p>Learning code, I never liked tests. Why? Because the process went like this:</p>
+
+<ol>
+<li>Write code that works (by manually looking at the results).</li>
+<li>Write tests to satisfy professors/people that wanted to see tests.</li>
+</ol>
+
+<p>My initial naive thought was: &ldquo;Why write more code? These tests aren&rsquo;t useful, I&rsquo;ve already written the code I need, and it works.&rdquo; Those were dark days, my friend. Then a highly recommended book came my way, Practical Object-oriented Design In Ruby, that showed me code <em>changes</em> a lot. Like, a lot. Without tests, you&rsquo;ll need to manually look at <em>everything</em> whenever you make a change, to ensure nothing got broken. My process then became this:</p>
+
+<ol>
+<li>Write code that works (by manually looking at the results).</li>
+<li>Write tests on everything, to prove that it works without needing manual inspection.</li>
+<li>Change the code a little bit.</li>
+<li>Flip the table because half the tests are now broken (but the code is correct).</li>
+</ol>
+
+<p>After reading the aforementioned textbook a bit more, I realised why I was having such an awful time. I wasn&rsquo;t just testing for the expected output, I was also testing the implementation. I demanded the specific &ldquo;what&rdquo;, and I demanded the specific &ldquo;how&rdquo; as well.</p>
+
+<p>If you, reader, have a sinking feeling that this is you too, then listen closely. Every object should have a public interface (how others talk to it), and a private implementation (how it figures out how to give others what they want). The public methods are the menu at a restaurant. The private methods are the kitchen out back.</p>
+
+<p>With this in mind, consider the following question: If you ask for an item from the menu, does it matter <em>how</em> that item is prepared? Did they use a spatula or a spoon? Was the stove on medium heat or high? As long as you get your food, it doesn&rsquo;t matter what specific method they used. With this break through my process is now this:</p>
+
+<ol>
+<li>Write code that works (by manually looking at the results).</li>
+<li>Write tests for the interfaces between objects (checking the output of public methods).</li>
+<li>Change the code a little bit (different setup in the kitchen).</li>
+<li>Run tests to ensure the right food is still being served.</li>
+</ol>
+
+<p>Now I can make a change to the inner workings of my code, run my test suite, and know that the program still works. My tests don&rsquo;t trip me up, because I&rsquo;m not enforcing the &ldquo;how&rdquo;, only the resulting &ldquo;what&rdquo;.</p>
+
+  </div>
+  
+  <div class="post">
+    <h1 class="post-title">
       <a href="https://reganryannz.github.io/post/use-underscore-to-speed-up-console-testing/">
         Use Underscore To Speed Up Console Testing
       </a>
@@ -60,9 +105,9 @@
 
     <span class="post-date">Fri, Aug 5, 2016</span>
 
-    <p><strong>TL;DR</strong> use <code>_</code> to reference the last output in the console, but make sure you store it somewhere!</p>
+    <p><strong>TL;DR</strong> use <code>_</code> to reference the last returned value in the console, but make sure you store it somewhere!</p>
 
-<p>The Rails Console <code>rails c</code> is a great tool for quick testing—checking if you get the right syntax in a chain of commands.</p>
+<p>The Rails Console <code>rails c</code> is a great tool for quick testing—checking if you have the right syntax in a chain of commands.</p>
 <div class="highlight" style="background: #272822"><pre style="line-height: 125%"><span></span><span style="color: #960050; background-color: #1e0010">$</span> <span style="color: #f8f8f2">rails</span> <span style="color: #f8f8f2">c</span>
 <span style="color: #75715e"># How many users have subscribed to email updates?</span>
 <span style="color: #f92672">&gt;</span> <span style="color: #f8f8f2">@supporters</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">select</span> <span style="color: #f8f8f2">{</span><span style="color: #f92672">|</span><span style="color: #f8f8f2">s</span><span style="color: #f92672">|</span> <span style="color: #f8f8f2">s</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">donation_preferences</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">email_updates</span> <span style="color: #f8f8f2">}</span>

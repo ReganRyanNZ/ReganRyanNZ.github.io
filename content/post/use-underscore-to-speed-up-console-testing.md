@@ -8,11 +8,11 @@ title = "Use Underscore To Speed Up Console Testing"
 
 +++
 
-**TL;DR** use `_` to reference the last output in the console, but make sure you store it somewhere!
+**TL;DR** use `_` to reference the last returned value in the console, but make sure you store it somewhere!
 
-The Rails Console `rails c` is a great tool for quick testing—checking if you get the right syntax in a chain of commands.
+The Rails Console `rails c` is a great tool for quick testing—checking if you have the right syntax in a chain of commands.
 
-```rb
+```ruby
 $ rails c
 # How many users have subscribed to email updates?
 > @supporters.select {|s| s.donation_preferences.email_updates }
