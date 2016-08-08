@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Ruby on My New Hugo Site</title>
+    <title>Ruby on Code like a Walrus</title>
     <link>https://reganryannz.github.io/tags/ruby/</link>
-    <description>Recent content in Ruby on My New Hugo Site</description>
+    <description>Recent content in Ruby on Code like a Walrus</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Fri, 05 Aug 2016 16:54:11 +1200</lastBuildDate>
@@ -15,9 +15,9 @@
       <pubDate>Fri, 05 Aug 2016 16:54:11 +1200</pubDate>
       
       <guid>https://reganryannz.github.io/post/use-underscore-to-speed-up-console-testing/</guid>
-      <description>&lt;p&gt;&lt;strong&gt;TL;DR&lt;/strong&gt; use &lt;code&gt;_&lt;/code&gt; to reference the last output in the console, but make sure you store it somewhere!&lt;/p&gt;
+      <description>&lt;p&gt;&lt;strong&gt;TL;DR&lt;/strong&gt; use &lt;code&gt;_&lt;/code&gt; to reference the last returned value in the console, but make sure you store it somewhere!&lt;/p&gt;
 
-&lt;p&gt;The Rails Console &lt;code&gt;rails c&lt;/code&gt; is a great tool for quick testing—checking if you get the right syntax in a chain of commands.&lt;/p&gt;
+&lt;p&gt;The Rails Console &lt;code&gt;rails c&lt;/code&gt; is a great tool for quick testing—checking if you have the right syntax in a chain of commands.&lt;/p&gt;
 &lt;div class=&#34;highlight&#34; style=&#34;background: #272822&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span style=&#34;color: #960050; background-color: #1e0010&#34;&gt;$&lt;/span&gt; &lt;span style=&#34;color: #f8f8f2&#34;&gt;rails&lt;/span&gt; &lt;span style=&#34;color: #f8f8f2&#34;&gt;c&lt;/span&gt;
 &lt;span style=&#34;color: #75715e&#34;&gt;# How many users have subscribed to email updates?&lt;/span&gt;
 &lt;span style=&#34;color: #f92672&#34;&gt;&amp;gt;&lt;/span&gt; &lt;span style=&#34;color: #f8f8f2&#34;&gt;@supporters&lt;/span&gt;&lt;span style=&#34;color: #f92672&#34;&gt;.&lt;/span&gt;&lt;span style=&#34;color: #f8f8f2&#34;&gt;select&lt;/span&gt; &lt;span style=&#34;color: #f8f8f2&#34;&gt;{&lt;/span&gt;&lt;span style=&#34;color: #f92672&#34;&gt;|&lt;/span&gt;&lt;span style=&#34;color: #f8f8f2&#34;&gt;s&lt;/span&gt;&lt;span style=&#34;color: #f92672&#34;&gt;|&lt;/span&gt; &lt;span style=&#34;color: #f8f8f2&#34;&gt;s&lt;/span&gt;&lt;span style=&#34;color: #f92672&#34;&gt;.&lt;/span&gt;&lt;span style=&#34;color: #f8f8f2&#34;&gt;donation_preferences&lt;/span&gt;&lt;span style=&#34;color: #f92672&#34;&gt;.&lt;/span&gt;&lt;span style=&#34;color: #f8f8f2&#34;&gt;email_updates&lt;/span&gt; &lt;span style=&#34;color: #f8f8f2&#34;&gt;}&lt;/span&gt;

@@ -8,12 +8,13 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
 
-  <title> Use Underscore To Speed Up Console Testing &middot; My New Hugo Site </title>
+  <title> Use Underscore To Speed Up Console Testing &middot; Code like a Walrus </title>
 
   
   <link rel="stylesheet" href="https://reganryannz.github.io/css/poole.css">
   <link rel="stylesheet" href="https://reganryannz.github.io/css/syntax.css">
   <link rel="stylesheet" href="https://reganryannz.github.io/css/hyde.css">
+  <link rel="stylesheet" href="https://reganryannz.github.io/css/override.css">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
 
   
@@ -21,27 +22,29 @@
   <link rel="shortcut icon" href="/favicon.png">
 
   
-  <link href="" rel="alternate" type="application/rss+xml" title="My New Hugo Site" />
+  <link href="" rel="alternate" type="application/rss+xml" title="Code like a Walrus" />
 </head>
 
-	<body class="theme-base-09">
+	<body class="theme-base-08">
 		<div class="sidebar">
   <div class="container sidebar-sticky">
     <div class="sidebar-about">
-      <a href="https://reganryannz.github.io/"><h1>My New Hugo Site</h1></a>
+      <a href="https://reganryannz.github.io/"><h1>Code like a Walrus</h1></a>
       <p class="lead">
-      An elegant open source and mobile first theme for <a href="http://hugo.spf13.com">hugo</a> made by <a href="http://twitter.com/mdo">@mdo</a>. Originally made for Jekyll.
+       If you finish a project and think &#34;If I did that again, I&#39;d do it differently&#34;—that means you learned something. 
       </p>
     </div>
 
     <ul class="sidebar-nav">
       <li><a href="/">Home</a> </li>
       
+        <li><a href="/post/test-interfaces-only/"> Test Interfaces Only </a></li>
+      
         <li><a href="/post/use-underscore-to-speed-up-console-testing/"> Use Underscore To Speed Up Console Testing </a></li>
       
     </ul>
 
-    <p>&copy; 2016. All rights reserved. </p>
+    <p>&copy; Regan Ryan 2016. All rights reserved. </p>
   </div>
 </div>
 
@@ -50,9 +53,9 @@
 			<div class="post">
 			 	<h1>Use Underscore To Speed Up Console Testing</h1>
 			  <span class="post-date">Fri, Aug 5, 2016</span>
-			      <p><strong>TL;DR</strong> use <code>_</code> to reference the last output in the console, but make sure you store it somewhere!</p>
+			      <p><strong>TL;DR</strong> use <code>_</code> to reference the last returned value in the console, but make sure you store it somewhere!</p>
 
-<p>The Rails Console <code>rails c</code> is a great tool for quick testing—checking if you get the right syntax in a chain of commands.</p>
+<p>The Rails Console <code>rails c</code> is a great tool for quick testing—checking if you have the right syntax in a chain of commands.</p>
 <div class="highlight" style="background: #272822"><pre style="line-height: 125%"><span></span><span style="color: #960050; background-color: #1e0010">$</span> <span style="color: #f8f8f2">rails</span> <span style="color: #f8f8f2">c</span>
 <span style="color: #75715e"># How many users have subscribed to email updates?</span>
 <span style="color: #f92672">&gt;</span> <span style="color: #f8f8f2">@supporters</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">select</span> <span style="color: #f8f8f2">{</span><span style="color: #f92672">|</span><span style="color: #f8f8f2">s</span><span style="color: #f92672">|</span> <span style="color: #f8f8f2">s</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">donation_preferences</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">email_updates</span> <span style="color: #f8f8f2">}</span>
