@@ -32,12 +32,14 @@
     <div class="sidebar-about">
       <a href="https://reganryannz.github.io/"><h1>Code like a Walrus</h1></a>
       <p class="lead">
-       If you finish a project and think &#34;If I did that again, I&#39;d do it differently&#34;—that means you learned something. 
+       If you finish a project and say &#34;If I did that again, I&#39;d do it differently&#34;—that means you learned something. 
       </p>
     </div>
 
     <ul class="sidebar-nav">
       <li><a href="/">Home</a> </li>
+      
+        <li><a href="/post/navigating-less/"> Navigating Less </a></li>
       
         <li><a href="/post/test-interfaces-only/"> Test Interfaces Only </a></li>
       
@@ -54,6 +56,62 @@
 <div class="posts">
 
       
+  <div class="post">
+    <h1 class="post-title">
+      <a href="https://reganryannz.github.io/post/navigating-less/">
+        Navigating Less
+      </a>
+    </h1>
+
+    <span class="post-date">Wed, Aug 10, 2016</span>
+
+    <p>Several git commands, such as <code>git log</code>, bring you into the Unix Less program. This looks like the following:</p>
+<div class="highlight" style="background: #272822"><pre style="line-height: 125%"><span></span>commit 3abb211726b175b326afade16adc79876dfc3905
+Author: Regan Ryan &lt;regan.ryan@email.com&gt;
+Date:   Tue Aug 9 16:38:20 2016 +1200
+
+    added super admin buttons to act/deactivate account
+
+commit 396a65574144f880b12b351ea319fb1300f4e81a
+Author: Regan Ryan &lt;regan.ryan@email.com&gt;
+Date:   Tue Aug 9 14:45:12 2016 +1200
+
+    making admin partials (to be unified with publisher partials)
+
+commit 8cafcbf8e3ca864ed2f37ce4ea8f4cdf85238951
+Author: Regan Ryan &lt;regan.ryan@email.com&gt;
+Date:   Tue Aug 9 13:11:41 2016 +1200
+
+    added account fields to active pub (admin view)
+
+commit 9709e2c1819cb5c23aa77fb832beefb2f98e5672
+Merge: 6d31bd4 44e3c2a
+Author: ReganRyanNZ &lt;regan.ryan@email.com&gt;
+Date:   Tue Aug 9 14:43:40 2016 +1200
+
+    Merge pull request #75 from ReganRyanNZ/sf-colordefaults
+
+:
+</pre></div>
+
+<p>The <code>:</code> at the end indicates your are inside Less. Here are some basic commands to help navigate:</p>
+
+<ul>
+<li><code>q</code> quits out of Less.</li>
+<li><code>j</code> next line.</li>
+<li><code>k</code> previous line.</li>
+<li><code>f</code> forward one screenful.</li>
+<li><code>b</code> back one screenful.</li>
+<li><code>/</code> type in a phrase and press <code>Enter</code> to search.
+
+<ul>
+<li><code>n</code> find next.</li>
+<li><code>N</code> find previous.</li>
+</ul></li>
+</ul>
+
+  </div>
+  
   <div class="post">
     <h1 class="post-title">
       <a href="https://reganryannz.github.io/post/test-interfaces-only/">
